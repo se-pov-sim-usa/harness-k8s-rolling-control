@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rolling-control
-  namespace: rolling-deploy-control
+  namespace: rolling-deploy-ns2
   labels:
     app: rolling-control
     test: harness-rolling-deploy-control
