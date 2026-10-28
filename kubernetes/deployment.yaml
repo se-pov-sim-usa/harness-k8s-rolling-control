@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rolling-control
+  namespace: rolling-deploy-control
+  labels:
+    app: rolling-control
+    test: harness-rolling-deploy-control
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rolling-control
+  template:
+    metadata:
+      labels:
+        app: rolling-control
+        test: harness-rolling-deploy-control
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27-alpine
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
